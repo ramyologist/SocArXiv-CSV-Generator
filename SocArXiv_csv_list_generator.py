@@ -67,8 +67,6 @@ def create_csv(preprints):
             writer.writerow((title, doi, download_link, subjects))
     return csv_file.getvalue()
 
-st.title("SocArxiv Preprint Downloader CSV Generator")
-
 # Dropdown for subject filtering
 subject_filter = st.selectbox("Select a subject:", available_subjects)
 
