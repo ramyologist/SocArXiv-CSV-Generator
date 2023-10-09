@@ -9,7 +9,7 @@ st.write(
     '''
     This app allows you to generate links to SocArXiv preprints based on the selected subject.
     Simply choose a subject from the dropdown list and click on 'Create CSV File', 
-    to generate a CSV file with links to the preprints of the selected subject.
+    to generate a CSV file with a list containing authors, titles and links to the preprints of the selected subject.
     '''
 )
 from io import StringIO
