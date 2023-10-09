@@ -9,8 +9,12 @@ st.write(
     '''
     This app allows you to generate links to SocArXiv preprints based on the selected subject.
     Simply choose a subject from the dropdown list and click on 'Create CSV File', 
-    to generate a CSV file with a list containing authors, titles and links to the preprints of the selected subject.
-    \n GitHub-Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
+    to generate a CSV file with a list containing titles and links to the preprints of the selected subject.
+    \n\n The script currently still has problems displaying the author names. The problem is because the API 
+    does not return the author names in a consistent format. Sometimes they are as a list of strings, sometimes 
+    as a single string separated by commas. The script cannot handle this inconsistency properly and leaves 
+    the author names empty.
+    \n\n GitHub-Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
     \n Cheers, 
     \n ramyologist
     '''
