@@ -78,4 +78,4 @@ if st.button("Generate CSV"):
     progress_bar.empty()
     st.download_button("Download CSV", csv_content, f"{subject_filter}_preprints.csv", "text/csv")
 else:
-    st.write(f"Select a subject and click the button to generate the CSV file with SocArxiv preprints related to the selected subject.")
+    st.write(f"")
