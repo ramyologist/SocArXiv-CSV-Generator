@@ -66,9 +66,8 @@ def create_csv(preprints):
     csv_file = StringIO()
     writer = csv.writer(csv_file)
     writer.writerow(["Title", "DOI", "Download Link", "Subjects"])
-    for preprint in preprints:
-        for title, doi, download_link, subjects in preprints:
-            writer.writerow((title, doi, download_link, subjects))
+    for title, doi, download_link, subjects in preprints:
+        writer.writerow((title, doi, download_link, subjects))
     return csv_file.getvalue()
 
 # Dropdown for subject filtering
