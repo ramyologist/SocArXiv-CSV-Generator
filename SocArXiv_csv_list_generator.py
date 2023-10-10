@@ -10,7 +10,8 @@ st.title('SocArXiv Preprints Link Generator')
 
 st.write(
     '''
-    This app allows you to generate links to SocArXiv preprints based on the selected subject.
+    \n Version 1.0.0.
+    \n This app allows you to generate links to SocArXiv preprints based on the selected subject.
     Simply choose a subject from the dropdown list and click on 'Fetch Preprints', 
     to generate a CSV file with a list containing authors, titles and links to the preprints of the selected subject.
     \n When all titles of a subject have been fetched, a download button for the CSV file appears. 
