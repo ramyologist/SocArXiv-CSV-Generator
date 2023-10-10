@@ -1,4 +1,4 @@
-pip install pylatexenc
+!pip install pylatexenc
 
 import csv
 import requests
