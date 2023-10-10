@@ -11,10 +11,10 @@ st.title('SocArXiv Preprints Link Generator')
 st.write(
     '''
     \n Version 1.0.0.
-    \n This app allows you to generate links to SocArXiv preprints based on the selected subject.
+    \n This app allows you to generate a list of SocArXiv preprints based on the selected subject.
     Simply choose a subject from the dropdown list and click on 'Fetch Preprints', 
-    to generate a CSV file with a list containing authors, titles and links to the preprints of the selected subject.
-    \n When all titles of a subject have been fetched, a download button for the CSV file appears. 
+    to generate a CSV file with a list containing authors, titles and download links to the pdf-files.
+    \n When all preprints of a chosen subject have been fetched, a download button for the CSV file appears. 
     \n Unfortunately, the streamlit server sometimes crashes. In this case, you may consider downloading the code from my Github-Repo and running it on a local host. 
     
     GitHub-Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
