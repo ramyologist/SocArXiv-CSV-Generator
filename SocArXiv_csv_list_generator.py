@@ -1,4 +1,4 @@
-!pip install LatexNodes2Text
+pip install pylatexenc
 
 import csv
 import requests
