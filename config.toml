@@ -6,7 +6,7 @@
 # The global section contains settings that apply across all pages.
 
 # Disable the "Streamlit is running" banner.
-disableOnboarding = true
+disableOnboarding = false
 
 [theme]
 # The theme section contains settings to customize the appearance of Streamlit.
