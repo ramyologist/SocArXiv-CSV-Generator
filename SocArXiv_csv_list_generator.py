@@ -1,3 +1,4 @@
+!pip install LatexNodes2Text
 
 import csv
 import requests
