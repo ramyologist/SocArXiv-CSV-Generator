@@ -14,7 +14,7 @@ st.write(
     Simply choose a subject from the dropdown list and click on 'Fetch Preprints', 
     to generate a CSV file with a list containing authors, titles and links to the preprints of the selected subject.
     \n When all titles of a subject have been fetched, a download button for the CSV file appears. 
-    \n Unfortunately, the streamlit server sometimes crashes. In this case, download the code from my Github-Repo and run it on a local host. 
+    \n Unfortunately, the streamlit server sometimes crashes. In this case, you may consider downloading the code from my Github-Repo and running it on a local host. 
     
     GitHub-Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
     
