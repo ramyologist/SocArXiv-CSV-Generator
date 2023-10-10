@@ -1,0 +1,40 @@
+
+# This is the configuration file for Streamlit. Settings are organized into sections.
+# Each section corresponds to a page or widget in Streamlit.
+
+[global]
+# The global section contains settings that apply across all pages.
+
+# Disable the "Streamlit is running" banner.
+disableOnboarding = true
+
+[theme]
+# The theme section contains settings to customize the appearance of Streamlit.
+
+# Set the primary color for the app.
+primaryColor = "#E694FF"
+
+# Background color for the main content area.
+backgroundColor = "#FFFFFF"
+
+# Color for almost all text in the app.
+textColor = "#262730"
+
+# Font family for all text in the app, except code blocks.
+font = "sans-serif"
+
+[server]
+# The server section contains settings for the Streamlit server.
+
+# Ensure the app doesn't start in wide mode which uses more screen width.
+headless = false
+
+[logger]
+# The logger section contains settings for Streamlit's logging.
+
+# Set the log level. One of 'debug', 'info', 'warning', 'error', or 'critical'.
+level = "info"
+
+# Uncomment and modify the next line if you want to customize the favicon.
+# [browser]
+# favicon = "/path/to/your/favicon.ico"
