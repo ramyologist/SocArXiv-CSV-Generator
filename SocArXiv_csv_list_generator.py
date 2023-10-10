@@ -1,12 +1,10 @@
-!pip install pylatexenc
-
 import csv
 import requests
 import re
 from pylatexenc.latex2text import LatexNodes2Text
 import streamlit as st
-import re
-from pylatexenc.latex2text import LatexNodes2Text
+
+
 
 st.title('SocArXiv Preprints Link Generator')
 
