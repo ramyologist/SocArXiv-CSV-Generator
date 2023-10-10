@@ -11,8 +11,10 @@ st.title('SocArXiv Preprints Link Generator')
 st.write(
     '''
     This app allows you to generate links to SocArXiv preprints based on the selected subject.
-    Simply choose a subject from the dropdown list and click on 'Create CSV File', 
+    Simply choose a subject from the dropdown list and click on 'Fetch Preprints', 
     to generate a CSV file with a list containing authors, titles and links to the preprints of the selected subject.
+    /n When all titles of a subject have been fetched, a download button for the CSV file appears. 
+    /n Unfortunately, the streamlit server sometimes crashes. In this case, download the code from my Github-Repo and run it on a local host. 
     
     GitHub-Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
     
@@ -97,7 +99,7 @@ def create_csv_with_selected_columns(preprints):
 
 subject_filter = st.selectbox("Select a subject:", available_subjects)
 
-if st.button("Generate CSV"):
+if st.button("Fetch Preprints"):
     progress_text = st.empty()
     progress_bar = st.empty()
     preprints = fetch_all_preprints_with_year_and_author(progress_bar, subject_filter)
