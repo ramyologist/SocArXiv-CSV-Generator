@@ -3,7 +3,7 @@ import requests
 import re
 from pylatexenc.latex2text import LatexNodes2Text
 import streamlit as st
-
+from io import StringIO
 
 # Set the title of the Streamlit app
 st.title('SocArXiv Preprints Link Generator')
@@ -25,8 +25,6 @@ st.write(
     ramyologist
     '''
 )
-
-from io import StringIO
 
 # Define the base URL for the SocArXiv API
 base_url = "https://api.osf.io/v2/providers/preprints/socarxiv/preprints/"
