@@ -29,6 +29,7 @@ This Streamlit app allows you to generate a list of SocArXiv preprints based on 
 
 ## New in Version 1.1.0
 
+- Now supports searching for preprints based on their titles.
 - Added a "Subject" column in the CSV file to indicate the selected subject for each preprint.
 - Implemented a progress bar that displays the real-time count of preprints included in the CSV file during the search.
 
