@@ -1,56 +1,43 @@
-SocArXiv Preprints Link Generator
+# SocArXiv Preprints Link Generator
 
-The "SocArXiv Preprints Link Generator" is a Streamlit app that allows users to generate a list of SocArXiv preprints based on their chosen subject. The app fetches preprints data from the SocArXiv API and provides a downloadable CSV file containing preprint information, including authors, titles, and download links to the PDF files.
+![GitHub](https://img.shields.io/github/license/ramyologist/SocArXiv-CSV-Generator)
 
-Features
+This Streamlit app allows you to generate a list of SocArXiv preprints based on the selected subject and title search. You can filter preprints by subject, search for keywords in titles, and export the results to a CSV file.
 
-    Select a subject from the dropdown list.
-    Click the "Fetch Preprints" button to generate a CSV file.
-    Download the CSV file containing preprints' information.
+## Features
 
-Usage
+- Select a subject from the dropdown list or choose "All Subjects" to search in all subjects.
+- Enter keywords in the search box to filter preprints by title.
+- Real-time progress bar displays the count of preprints included in the CSV file during the search.
 
-    Launch the Streamlit app.
-    Choose a subject from the dropdown list.
-    Click the "Fetch Preprints" button.
-    Wait for the preprints to be fetched (a progress bar is displayed).
-    Once all preprints are fetched, a "Download CSV" button will appear.
-    Click the "Download CSV" button to download the CSV file containing preprints' information.
+## Requirements
 
-Dependencies
+- Python 3.x
+- Install the required Python packages by running `pip install -r requirements.txt`.
 
-The code uses the following Python libraries and modules:
+## Usage
 
-    csv: For CSV file handling.
-    requests: For making HTTP requests to the SocArXiv API.
-    re: For regular expressions to parse DOI metadata.
-    pylatexenc.latex2text: For converting LaTeX-encoded author names to text.
-    streamlit: For creating the web application.
+1. Clone or download this repository to your local machine.
+2. Install the required Python packages by running `pip install -r requirements.txt`.
+3. Run the Streamlit app by executing `streamlit run SocArXiv_csv_list_generator.py`.
+4. Select a subject from the dropdown list or choose "All Subjects" to search in all subjects.
+5. Enter keywords in the search box to filter preprints by title.
+6. Click the "Search Preprints" button to initiate the search.
+7. The progress bar will show the progress of fetching and filtering preprints.
+8. Once the search is complete, a download button for the CSV file will appear.
+9. Click the "Download CSV" button to save the preprints' information as a CSV file.
 
-Configuration
+## New in Version 1.1.0
 
-    base_url: The base URL for the SocArXiv API.
-    subject_url: The URL for fetching subject data.
-    fetch_all_subjects(): Function to fetch all available subjects from the SocArXiv API.
-    fetch_doi_metadata(doi): Function to fetch metadata for a given DOI.
-    extract_bibtex_metadata(bibtex_str): Function to extract year and author information from BibTeX metadata.
-    fetch_all_preprints_with_year_and_author(progress_bar, subject_filter): Function to fetch preprints for a selected subject and retrieve author and year information.
-    create_csv_with_selected_columns(preprints): Function to create a CSV file containing selected preprints' columns.
+- Added a "Subject" column in the CSV file to indicate the selected subject for each preprint.
+- Implemented a progress bar that displays the real-time count of preprints included in the CSV file during the search.
 
-Usage Notes
+## License
 
-    The Streamlit app may experience occasional crashes. In such cases, you can consider downloading the code from the GitHub repository provided and running it on a local host.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-GitHub Repository
+## Acknowledgments
 
-    GitHub Repo
+- Special thanks to the [SocArXiv](https://osf.io/preprints/socarxiv/) platform for providing access to preprints data.
 
-Author
-
-    This Streamlit app is created by Ramy Youssef (@ramyologist).
-
-Version
-
-    Version 1.0.0
-
-This app provides a convenient way to access and organize SocArXiv preprints data based on subject preferences and export it in a CSV format for further analysis or reference.
+If you encounter any issues or have suggestions for improvements, please feel free to [open an issue](https://github.com/ramyologist/SocArXiv-CSV-Generator/issues).
