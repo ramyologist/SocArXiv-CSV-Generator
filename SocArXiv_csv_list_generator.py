@@ -11,14 +11,15 @@ st.title('SocArXiv Preprints Link Generator')
 # Provide information about the app
 st.write(
     '''
-    \n Version 1.0.0.
-    \n This app allows you to generate a list of SocArXiv preprints based on the selected subject.
-    Simply choose a subject from the dropdown list and click on 'Fetch Preprints', 
-    to generate a CSV file with a list containing authors, titles and download links to the pdf-files.
-    \n When all preprints of a chosen subject have been fetched, a download button for the CSV file appears. 
-    \n Unfortunately, the streamlit server sometimes crashes. In this case, you may consider downloading the code from my Github-Repo and running it on a local host. 
+    \n Version 1.1.0.
+    \n This app allows you to generate a list of SocArXiv preprints based on the selected subject and title search.
+    Simply choose a subject from the dropdown list, enter keywords in the search box, and click on 'Search Preprints', 
+    to generate a CSV file with a list containing authors, titles, subjects, and download links to the pdf-files.
+    \n When the search is complete, a download button for the CSV file appears. 
+    \n Searching across all subjects might take some time. Feel free to fetch yourself a drink in the meantime.
+    \n Unfortunately, the Streamlit server sometimes crashes. In this case, you may consider downloading the code from my GitHub Repo and running it on a local host. 
     
-    GitHub-Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
+    GitHub Repo: https://github.com/ramyologist/SocArXiv-CSV-Generator
     
     Cheers, 
     
@@ -48,6 +49,12 @@ def fetch_all_subjects():
 # Fetch all available subjects
 available_subjects = fetch_all_subjects()
 
+# Add "All Subjects" as an option at the beginning of the subject list
+available_subjects.insert(0, "All Subjects")
+
+# Create a dropdown to select a subject
+subject_filter = st.selectbox("Select a subject:", available_subjects)
+
 # Function to fetch metadata for a given DOI
 def fetch_doi_metadata(doi):
     headers = {
@@ -72,13 +79,17 @@ def extract_bibtex_metadata(bibtex_str):
     
     return year, author
 
-# Function to fetch all preprints for a selected subject and retrieve author and year information
-def fetch_all_preprints_with_year_and_author(progress_bar, subject_filter):
+# Function to fetch preprints for a specific subject and retrieve author and year information
+def fetch_subject_preprints_with_year_and_author(subject_filter, search_keywords, progress_text, progress_bar):
     preprints = []
     page = 1
     total_preprints = 0
     while True:
-        params = {"page[size]": 100, "page": page, "filter[subjects]": subject_filter}
+        params = {
+            "page[size]": 100,
+            "page": page,
+            "filter[subjects]": subject_filter if subject_filter != "All Subjects" else None,
+        }
         response = requests.get(base_url, params=params)
         data = response.json()
         new_preprints_count = len(data.get("data", []))
@@ -89,11 +100,12 @@ def fetch_all_preprints_with_year_and_author(progress_bar, subject_filter):
             osf_link = preprint["links"]["preprint_doi"].replace("https://doi.org/10.31235/osf.io/", "https://osf.io/preprints/socarxiv/") + "/"
             doi_link = f"https://doi.org/10.31235/osf.io/{osf_link.split('/')[-2]}"
             download_link = f"{osf_link}download"
-            metadata = fetch_doi_metadata(doi_link)
-            _, author = extract_bibtex_metadata(metadata) if metadata else (None, None)
-            preprints.append((author, title, osf_link, download_link))
-        total_preprints += new_preprints_count
-        progress_text.text(f"Total Preprints Fetched: {total_preprints}")
+            if search_keywords.lower() in title.lower():  # Filter by search keywords in title
+                metadata = fetch_doi_metadata(doi_link)
+                _, author = extract_bibtex_metadata(metadata) if metadata else (None, None)
+                preprints.append((author, title, subject_filter, osf_link, download_link))
+                total_preprints += 1
+                progress_text.text(f"Total Preprints Fetched: {total_preprints}")
         progress_bar.progress(total_preprints/15000)
         page += 1
     return preprints
@@ -102,21 +114,21 @@ def fetch_all_preprints_with_year_and_author(progress_bar, subject_filter):
 def create_csv_with_selected_columns(preprints):
     csv_file = StringIO()
     writer = csv.writer(csv_file)
-    writer.writerow(["Author", "Title", "OSF Link", "Download Link"])
-    for author, title, osf_link, download_link in preprints:
-        writer.writerow((author, title, osf_link, download_link))
+    writer.writerow(["Author", "Title", "Subject", "OSF Link", "Download Link"])
+    for author, title, subject, osf_link, download_link in preprints:
+        writer.writerow((author, title, subject, osf_link, download_link))
     return csv_file.getvalue()
 
-# Create a dropdown to select a subject
-subject_filter = st.selectbox("Select a subject:", available_subjects)
+# Create a text input for searching keywords in titles
+search_keywords = st.text_input("Search Keywords in Titles")
 
-# If the "Fetch Preprints" button is clicked
-if st.button("Fetch Preprints"):
+# If the "Search Preprints" button is clicked
+if st.button("Search Preprints"):
     progress_text = st.empty()
-    progress_bar = st.empty()
+    progress_bar = st.progress(0.0)
 
-    # Fetch preprints for the selected subject and retrieve author and year information
-    preprints = fetch_all_preprints_with_year_and_author(progress_bar, subject_filter)
+    # Fetch and search preprints based on the selected subject and title keywords
+    preprints = fetch_subject_preprints_with_year_and_author(subject_filter, search_keywords, progress_text, progress_bar)
     
     # Create a CSV file containing preprints' information
     csv_content = create_csv_with_selected_columns(preprints)
@@ -125,6 +137,4 @@ if st.button("Fetch Preprints"):
     progress_bar.empty()
     
     # Add a download button for the CSV file
-    st.download_button("Download CSV", csv_content, f"{subject_filter}_preprints.csv", "text/csv")
-else:
-    st.write(f"")
+    st.download_button("Download CSV", csv_content, f"preprints_by_title_and_subject.csv", "text/csv")
