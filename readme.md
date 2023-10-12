@@ -1,6 +1,7 @@
 SocArXiv Preprints Link Generator
 
 The "SocArXiv Preprints Link Generator" is a Streamlit app that allows users to generate a list of SocArXiv preprints based on their chosen subject. The app fetches preprints data from the SocArXiv API and provides a downloadable CSV file containing preprint information, including authors, titles, and download links to the PDF files.
+
 Features
 
     Select a subject from the dropdown list.
@@ -46,7 +47,7 @@ GitHub Repository
 
 Author
 
-    This Streamlit app is created by "ramyologist."
+    This Streamlit app is created by Ramy Youssef (@ramyologist).
 
 Version
 
