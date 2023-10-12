@@ -33,10 +33,6 @@ This Streamlit app allows you to generate a list of SocArXiv preprints based on 
 - Added a "Subject" column in the CSV file to indicate the selected subject for each preprint.
 - Implemented a progress bar that displays the real-time count of preprints included in the CSV file during the search.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 - Special thanks to the [SocArXiv](https://osf.io/preprints/socarxiv/) platform for providing access to preprints data.
